@@ -13,9 +13,9 @@ void setup() {
    FuzzyInput *sensor1 = new FuzzyInput(1); 
   
    //conjuntos
-   FuzzySet *baixo1 = new FuzzySet(250, 327, 327, 405);
+   FuzzySet *baixo1 = new FuzzySet(250, 250, 327, 405);
    FuzzySet *medio1 = new FuzzySet(327, 405, 405, 482);
-   FuzzySet *alto1 = new FuzzySet(405, 482, 482, 560);
+   FuzzySet *alto1 = new FuzzySet(405, 482, 560, 560);
 
    //adicionando conjuntos ao sensor1
    sensor1->addFuzzySet(baixo1);
@@ -31,9 +31,9 @@ void setup() {
    FuzzyInput *sensor2 = new FuzzyInput(2); 
   
    //conjuntos
-   FuzzySet *baixo2 = new FuzzySet(250, 327, 327, 405);
+   FuzzySet *baixo2 = new FuzzySet(250, 250, 327, 405);
    FuzzySet *medio2 = new FuzzySet(327, 405, 405, 482);
-   FuzzySet *alto2 = new FuzzySet(405, 482, 482, 560);
+   FuzzySet *alto2 = new FuzzySet(405, 482, 560, 560);
 
    //adicionando conjuntos ao sensor2
    sensor2->addFuzzySet(baixo2);
@@ -49,9 +49,9 @@ void setup() {
    FuzzyInput *sensor3 = new FuzzyInput(3); 
   
    //conjuntos
-   FuzzySet *baixo3 = new FuzzySet(250, 327, 327, 405);
+   FuzzySet *baixo3 = new FuzzySet(250, 250, 327, 405);
    FuzzySet *medio3 = new FuzzySet(327, 405, 405, 482);
-   FuzzySet *alto3 = new FuzzySet(405, 482, 482, 560);
+   FuzzySet *alto3 = new FuzzySet(405, 482, 560, 560);
 
    //adicionando conjuntos ao sensor3
    sensor3->addFuzzySet(baixo3);
@@ -85,9 +85,9 @@ void setup() {
    FuzzyOutput *umidade = new FuzzyOutput(1);
 
    //conjuntos
-   FuzzySet *seco = new FuzzySet(0, 25, 25, 50);
+   FuzzySet *seco = new FuzzySet(0, 0, 25, 50);
    FuzzySet *umido = new FuzzySet(25, 50, 50, 75);
-   FuzzySet *encharcado = new FuzzySet(40, 75, 75, 100);
+   FuzzySet *encharcado = new FuzzySet(40, 75, 100, 100);
 
    //adicionando conjuntos umidade
    umidade->addFuzzySet(seco);
@@ -283,4 +283,3 @@ void verifica(){
     if(j==0)
     Serial.println("Nenhuma regra foi atingida ");
 }
-
