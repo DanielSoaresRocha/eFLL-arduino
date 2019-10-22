@@ -72,9 +72,9 @@ void setup() {
    FuzzySet *fase3 = new FuzzySet(3, 3, 3, 3);
 
    //adicionando conjuntos a fase
-   sensor3->addFuzzySet(fase1);
-   sensor3->addFuzzySet(fase2);
-   sensor3->addFuzzySet(fase3);
+   fase->addFuzzySet(fase1);
+   fase->addFuzzySet(fase2);
+   fase->addFuzzySet(fase3);
 
    //adicionando fase ao fuzzy
    fuzzy->addFuzzyInput(fase);
@@ -111,7 +111,7 @@ void setup() {
    FuzzyRule *fuzzyRule1 = new FuzzyRule(1, seFase1Esensor1Baixo, umidadeSeco);
    fuzzy->addFuzzyRule(fuzzyRule1);
 
-  
+   
    //---------------------------REGRA 2-------------------------------------
    //se a fase é fase1 e sensor1 é médio então umidade é umido
    FuzzyRuleAntecedent *seFase1Esensor1Medio = new FuzzyRuleAntecedent();
@@ -233,15 +233,6 @@ void setup() {
    FuzzyRule *fuzzyRule9 = new FuzzyRule(9, seFase3Esensor1AltoESensor2AltoEsensor3Alto, umidadeEncharcado3);
    fuzzy->addFuzzyRule(fuzzyRule9);
 
-   /*
-   baixo1->calculatePertinence(300);
-   baixo2->calculatePertinence(300);
-   baixo3->calculatePertinence(300);
-   fase1->calculatePertinence(1);
-   Serial.println(baixo1->getPertinence());
-   Serial.println(baixo2->getPertinence());
-   Serial.println(baixo3->getPertinence());
-   Serial.println(fase1->getPertinence());*/
 }
 
 void loop() {
@@ -250,13 +241,13 @@ void loop() {
   int inputSensor3 = random(250, 560);
   int inputFase = random(1, 3);
 
-  Serial.print("\t\t\tSensor1 = ");
+  Serial.print("Sensor 1 = ");
   Serial.println(inputSensor1);
-  Serial.print("\t\t\tSensor1 = ");
+  Serial.print("Sensor 2 = ");
   Serial.println(inputSensor2);
-  Serial.print("\t\t\tSensor1 = ");
+  Serial.print("Sensor 3 = ");
   Serial.println(inputSensor3);
-  Serial.print("\t\t\tFase = ");
+  Serial.print("Fase = ");
   Serial.println(inputFase);
 
   fuzzy->setInput(1, inputSensor1);
@@ -269,16 +260,27 @@ void loop() {
 
   float output = fuzzy->defuzzify(1);//int
 
-  Serial.print("\t\t\tUmidade: ");
+  Serial.print("Umidade: ");
   Serial.println(output);
   // wait 10 seconds
   delay(10000);
+  Serial.println();
+  Serial.println("_________________________________________________");
   
 }
 
 void verifica(){
-    //println("pertinencia: ");
-    
-    
+   int j = 0;
+    for (int i = 1; i <= 9; i++) {
+        bool wasTheRulleFired = fuzzy->isFiredRule(i);
+        if (wasTheRulleFired == 1) {
+          Serial.print("regra ");
+          Serial.print(i);
+          Serial.println(" foi atingida");
+          j++;
+        }    
+    }
+    if(j==0)
+    Serial.println("Nenhuma regra foi atingida ");
 }
 
